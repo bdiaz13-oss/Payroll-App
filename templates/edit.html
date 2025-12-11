@@ -1,0 +1,33 @@
+<!-- templates/edit.html -->
+{% extends 'base.html' %}
+
+{% block title %}Edit Employee{% endblock %}
+
+{% block content %}
+    <h1>Edit Employee</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.position.label(class="form-label") }}
+            {{ form.position(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.base_salary.label(class="form-label") }}
+            {{ form.base_salary(class="form-control") }}
+            <small class="form-text text-muted">Enter yearly base salary without dollar signs or commas (e.g., 50000 for $50,000).</small>
+        </div>
+        <div class="mb-3">
+            {{ form.tax_rate.label(class="form-label") }}
+            {{ form.tax_rate(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.deductions.label(class="form-label") }}
+            {{ form.deductions(class="form-control") }}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock %}

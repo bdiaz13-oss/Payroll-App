@@ -1,0 +1,41 @@
+{
+    "next_id": 5,
+    "employees": [
+        {
+            "id": 1,
+            "name": "Benjamin Diaz",
+            "position": "Crossing Guard",
+            "base_salary": 14040.0,
+            "tax_rate": 0.2,
+            "deductions": 0.0,
+            "added_at": "2025-12-10T23:59:33.425967"
+        },
+        {
+            "id": 2,
+            "name": "Mia Schultz",
+            "position": "Yard Duty",
+            "base_salary": 20000.0,
+            "tax_rate": 0.1,
+            "deductions": 2000.0,
+            "added_at": "2025-12-11T00:01:10.069497"
+        },
+        {
+            "id": 3,
+            "name": "Jesus Ochoa",
+            "position": "Principal Overseer",
+            "base_salary": 50000.0,
+            "tax_rate": 0.2,
+            "deductions": 0.0,
+            "added_at": "2025-12-11T00:04:34.782940"
+        },
+        {
+            "id": 4,
+            "name": "Ana Pendleton",
+            "position": "Chief Human Resources",
+            "base_salary": 100000.0,
+            "tax_rate": 0.2,
+            "deductions": 1000.0,
+            "added_at": "2025-12-11T00:09:07.367949"
+        }
+    ]
+}

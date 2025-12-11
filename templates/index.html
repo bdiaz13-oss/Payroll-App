@@ -1,0 +1,47 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Payroll App</h1>
+    <a href="{{ url_for('add') }}" class="btn btn-primary mb-4">Add New Employee</a>
+    {% if employees %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Yearly Base Salary</th>
+                    <th>Tax Rate</th>
+                    <th>Deductions</th>
+                    <th>Monthly Net Pay</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for emp in employees %}
+                    <tr>
+                        <td>{{ emp.id }}</td>
+                        <td>{{ emp.name }}</td>
+                        <td>{{ emp.position }}</td>
+                        <td>${{ '{:,.2f}'.format(emp.base_salary) }}</td>
+                        <td>{{ emp.tax_rate * 100 }}%</td>
+                        <td>${{ "%.2f" | format(emp.deductions) }}</td>
+                        <td>${{ '{:,.2f}'.format(emp.net_pay) }}</td>
+                        <td>
+                            <a href="{{ url_for('edit', id=emp.id) }}" class="btn btn-sm btn-warning">Edit</a>
+                            <form action="{{ url_for('delete', id=emp.id) }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
+                            </form>
+                            <a href="{{ url_for('payslip', id=emp.id) }}" class="btn btn-sm btn-info">Payslip</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No employees added yet.</p>
+    {% endif %}
+{% endblock %}

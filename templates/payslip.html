@@ -1,0 +1,19 @@
+<!-- templates/payslip.html -->
+{% extends 'base.html' %}
+
+{% block title %}Payslip for {{ emp.name }}{% endblock %}
+
+{% block content %}
+    <h1>Payslip for {{ emp.name }}</h1>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Position:</strong> {{ emp.position }}</p>
+            <p><strong>Base Salary:</strong> ${{ '{:,.2f}'.format(emp.base_salary) }}</p>
+            <p><strong>Tax Rate:</strong> {{ emp.tax_rate * 100 }}%</p>
+            <p><strong>Deductions:</strong> ${{ "%.2f" | format(emp.deductions) }}</p>
+            <p><strong>Monthly Net Pay:</strong> ${{ '{:,.2f}'.format(net_pay) }}</p>
+            <p><strong>Added At:</strong> {{ emp.added_at }}</p>
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+{% endblock %}
