@@ -1,0 +1,21 @@
+<!-- templates/edit_employee.html (overwrite the entire file with this) -->
+{% extends 'base.html' %}
+
+{% block title %}Edit Employee{% endblock %}
+
+{% block content %}
+    <h1>Edit Employee</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.pay_rate.label(class="form-label") }}
+            {{ form.pay_rate(class="form-control") }}
+            <small class="form-text text-muted">Enter as a number without $ sign or commas, e.g., 18.00 for $18.00/hour.</small>
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock %}

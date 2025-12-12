@@ -4,44 +4,51 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-    <h1>Welcome to Payroll App</h1>
-    <a href="{{ url_for('add') }}" class="btn btn-primary mb-4">Add New Employee</a>
-    {% if employees %}
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Position</th>
-                    <th>Yearly Base Salary</th>
-                    <th>Tax Rate</th>
-                    <th>Deductions</th>
-                    <th>Monthly Net Pay</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for emp in employees %}
-                    <tr>
-                        <td>{{ emp.id }}</td>
-                        <td>{{ emp.name }}</td>
-                        <td>{{ emp.position }}</td>
-                        <td>${{ '{:,.2f}'.format(emp.base_salary) }}</td>
-                        <td>{{ emp.tax_rate * 100 }}%</td>
-                        <td>${{ "%.2f" | format(emp.deductions) }}</td>
-                        <td>${{ '{:,.2f}'.format(emp.net_pay) }}</td>
-                        <td>
-                            <a href="{{ url_for('edit', id=emp.id) }}" class="btn btn-sm btn-warning">Edit</a>
-                            <form action="{{ url_for('delete', id=emp.id) }}" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
-                            </form>
-                            <a href="{{ url_for('payslip', id=emp.id) }}" class="btn btn-sm btn-info">Payslip</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>No employees added yet.</p>
+    <h1>Payroll Dashboard</h1>
+    <form method="GET" class="mb-4">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="name" class="form-label">Employee Name</label>
+                <input type="text" name="name" id="name" class="form-control" value="{{ name or '' }}">
+            </div>
+            <div class="col-md-3">
+                <label for="period_start" class="form-label">From Date</label>
+                <input type="date" name="period_start" id="period_start" class="form-control" value="{{ period_start or '' }}">
+            </div>
+            <div class="col-md-3">
+                <label for="period_end" class="form-label">To Date</label>
+                <input type="date" name="period_end" id="period_end" class="form-control" value="{{ period_end or '' }}">
+            </div>
+            <div class="col-md-2 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </div>
+        </div>
+    </form>
+    <a href="{{ url_for('add_record') }}" class="btn btn-primary mb-4">Add New Pay Record</a>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for rec in records %}
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ rec.employee_name }} - {{ rec.period_start }} to {{ rec.period_end }}</h5>
+                        <p class="card-text">
+                            Hours: {{ rec.hours_worked }} (Overtime: {{ rec.overtime_hours }})<br>
+                            Gross: ${{ rec.gross_pay | round(2) }}<br>
+                            Deductions: ${{ rec.deductions | round(2) }}<br>
+                            <strong>Net: ${{ rec.net_pay | round(2) }}</strong><br>
+                            Notes: {{ rec.notes[:100] }}{% if rec.notes|length > 100 %}...{% endif %}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{ url_for('view_record', id=rec.id) }}" class="btn btn-sm btn-outline-primary">View</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% if has_more %}
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index', page=page+1, name=name, period_start=period_start, period_end=period_end) }}" class="btn btn-secondary">Load More</a>
+        </div>
     {% endif %}
 {% endblock %}

@@ -1,0 +1,40 @@
+<!-- templates/edit_record.html -->
+{% extends 'base.html' %}
+
+{% block title %}Edit Pay Record{% endblock %}
+
+{% block content %}
+    <h1>Edit Pay Record</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            {{ form.employee_id.label(class="form-label") }}
+            {{ form.employee_id(class="form-select") }}
+        </div>
+        <div class="mb-3">
+            {{ form.period_start.label(class="form-label") }}
+            {{ form.period_start(class="form-control", type="date") }}
+        </div>
+        <div class="mb-3">
+            {{ form.period_end.label(class="form-label") }}
+            {{ form.period_end(class="form-control", type="date") }}
+        </div>
+        <div class="mb-3">
+            {{ form.hours_worked.label(class="form-label") }}
+            {{ form.hours_worked(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.overtime_hours.label(class="form-label") }}
+            {{ form.overtime_hours(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.deductions.label(class="form-label") }}
+            {{ form.deductions(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.notes.label(class="form-label") }}
+            {{ form.notes(class="form-control", rows=3) }}
+        </div>
+        {{ form.submit(class="btn btn-primary") }}
+    </form>
+{% endblock %}

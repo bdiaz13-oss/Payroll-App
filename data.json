@@ -1,41 +1,80 @@
 {
-    "next_id": 5,
+    "next_employee_id": 5,
+    "next_record_id": 5,
     "employees": [
         {
             "id": 1,
             "name": "Benjamin Diaz",
-            "position": "Crossing Guard",
-            "base_salary": 14040.0,
-            "tax_rate": 0.2,
-            "deductions": 0.0,
-            "added_at": "2025-12-10T23:59:33.425967"
+            "pay_rate": 18.0
         },
         {
             "id": 2,
-            "name": "Mia Schultz",
-            "position": "Yard Duty",
-            "base_salary": 20000.0,
-            "tax_rate": 0.1,
-            "deductions": 2000.0,
-            "added_at": "2025-12-11T00:01:10.069497"
+            "name": "Mia ",
+            "pay_rate": 18.25
         },
         {
             "id": 3,
-            "name": "Jesus Ochoa",
-            "position": "Principal Overseer",
-            "base_salary": 50000.0,
-            "tax_rate": 0.2,
-            "deductions": 0.0,
-            "added_at": "2025-12-11T00:04:34.782940"
+            "name": "Bob",
+            "pay_rate": 18.5
         },
         {
             "id": 4,
-            "name": "Ana Pendleton",
-            "position": "Chief Human Resources",
-            "base_salary": 100000.0,
-            "tax_rate": 0.2,
+            "name": "Tester",
+            "pay_rate": 5.0
+        }
+    ],
+    "pay_records": [
+        {
+            "id": 1,
+            "employee_id": 1,
+            "period_start": "2025-11-01",
+            "period_end": "2025-11-30",
+            "hours_worked": 60.0,
+            "overtime_hours": 0,
+            "deductions": 0,
+            "notes": "New hire",
+            "gross_pay": 1080.0,
+            "net_pay": 1080.0,
+            "added_at": "2025-12-12T20:06:55.577809"
+        },
+        {
+            "id": 2,
+            "employee_id": 2,
+            "period_start": "2024-11-01",
+            "period_end": "2025-11-30",
+            "hours_worked": 60.0,
+            "overtime_hours": 0,
+            "deductions": 0,
+            "notes": "1 year hire",
+            "gross_pay": 1095.0,
+            "net_pay": 1095.0,
+            "added_at": "2025-12-12T20:07:59.754287"
+        },
+        {
+            "id": 3,
+            "employee_id": 3,
+            "period_start": "2025-11-01",
+            "period_end": "2025-11-01",
+            "hours_worked": 60.0,
+            "overtime_hours": 5.0,
+            "deductions": 0,
+            "notes": "",
+            "gross_pay": 1248.75,
+            "net_pay": 1248.75,
+            "added_at": "2025-12-12T20:09:42.746094"
+        },
+        {
+            "id": 4,
+            "employee_id": 4,
+            "period_start": "2000-01-01",
+            "period_end": "2000-01-31",
+            "hours_worked": 100.0,
+            "overtime_hours": 0,
             "deductions": 1000.0,
-            "added_at": "2025-12-11T00:09:07.367949"
+            "notes": "Test",
+            "gross_pay": 500.0,
+            "net_pay": -500.0,
+            "added_at": "2025-12-12T20:15:35.369043"
         }
     ]
 }

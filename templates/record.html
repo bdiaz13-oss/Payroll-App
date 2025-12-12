@@ -1,0 +1,21 @@
+<!-- templates/record.html -->
+{% extends 'base.html' %}
+
+{% block title %}{{ rec.employee_name }} Pay Record{% endblock %}
+
+{% block content %}
+    <h1>{{ rec.employee_name }} - {{ rec.period_start }} to {{ rec.period_end }}</h1>
+    <p>
+        Hours Worked: {{ rec.hours_worked }}<br>
+        Overtime Hours: {{ rec.overtime_hours }}<br>
+        Gross Pay: ${{ rec.gross_pay | round(2) }}<br>
+        Deductions: ${{ rec.deductions | round(2) }}<br>
+        <strong>Net Pay: ${{ rec.net_pay | round(2) }}</strong><br>
+        Notes: {{ rec.notes }}
+    </p>
+    <a href="{{ url_for('edit_record', id=rec.id) }}" class="btn btn-warning">Edit</a>
+    <form action="{{ url_for('delete_record', id=rec.id) }}" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</button>
+    </form>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Back</a>
+{% endblock %}
